@@ -1,8 +1,8 @@
 void movePlayers() {
-  if(wPressed) {
+  if(wPressed || proximity >= 100 && proximity <= 490) {
     player1.moveUp();
   }
-  if(sPressed) {
+  if(sPressed || proximity > 500 ) {
     player1.moveDown();
   }
   if(upPressed) {

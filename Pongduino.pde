@@ -13,7 +13,8 @@ Scoreboard scores;
 SoundManager soundManager;
 
 Serial myPort;  // Create object from Serial class
-String val;     // Data received from the serial port
+String val;
+float proximity = 60.0;     // Data received from the serial port
 
 boolean wPressed;
 boolean sPressed;
@@ -49,9 +50,11 @@ void draw() {
   scores.display();
   
   if ( myPort.available() > 0) {                // If data is available,
-    val = myPort.readStringUntil('\n');         // read it and store it in val
+    val = myPort.readStringUntil('\n');
+    println(val);  
+    if (val != null && val.contains(".")) proximity = parseFloat(val); // read it and store it
   } 
-  println(val);                                 //print it out in the console
+  //println(map(parseFloat(val), 60, 650, 0, -10));                                 //print it out in the console
 }
 
 public void playBorderBounceSound() {
